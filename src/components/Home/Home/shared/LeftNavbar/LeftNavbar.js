@@ -10,24 +10,42 @@ const LeftNavbar = () => {
             .then(() => { })
             .catch(err => console.log(err))
     }
-    const menuItems = <React.Fragment>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/blog'>Blogs</Link></li>
-        <li><Link to='/events'>Events</Link></li>
-        <li><Link to='/gallery'>Gallery</Link></li>
-        <li className='btn btn-primary sticky'><Link to='/donate'>Donate Now</Link></li>
+    const menuItems = (
+      <React.Fragment>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/blog">Blogs</Link>
+        </li>
+        <li>
+          <Link to="/events">Events</Link>
+        </li>
+        <li>
+          <Link to="/gallery">Gallery</Link>
+        </li>
+        <li className="btn btn-primary sticky">
+          <Link to="/donate">Donate Now</Link>
+        </li>
 
-        {user?.uid ?
-            <>
-                <li><Link to='/dashboard'>Dashboard</Link></li>
-                <li><button onClick={handleLogout}>Sign Out</button></li>
-
-            </>
-            :
-            <>
-                <li><Link to='/login'>Login</Link></li>
-            </>}
-    </React.Fragment>
+        {user?.uid ? (
+          <>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Sign Out</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/loginFoodBox">Login</Link>
+            </li>
+          </>
+        )}
+      </React.Fragment>
+    );
     return (
         <div className="navbar bg-base-100 flex justify-between">
             <div className="navbar-start">

@@ -3,12 +3,11 @@ import { useLoaderData } from 'react-router-dom';
 import Details from '../Details/Details';
 import Update from '../Update/Update';
 
-const BlogDetails = () => {
-    const data =
-      useLoaderData();
+const EventDetails = () => {
+    const data= useLoaderData();
     return (
-      <Details data={data}></Details>
+        <Details data={data}></Details>
     );
 };
 
-export default BlogDetails;
+export default EventDetails;

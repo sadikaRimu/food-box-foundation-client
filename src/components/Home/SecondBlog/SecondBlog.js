@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import blogImg from '../../../assets/images/donation6.jpg';
+import blogImg from '../../../assets/images/donationPic2.JPG';
 
 const SecondBlog = () => {
     return (
@@ -8,7 +8,7 @@ const SecondBlog = () => {
             <h2 className='text-4xl font-bold mb-4 text-center'>Recent Event</h2>
             <div className="hero bg-slate-100 rounded">
                 <div className="hero-content flex-col lg:flex-row p-8">
-                    <img src={blogImg} alt='' className="rounded-lg shadow-2xl w-96 h-96" />
+                    <img src={blogImg} alt='' className="rounded-lg shadow-2xl w-1/2 h-96" />
                     <div>
                         <h1 className="text-3xl font-bold">No More Homeless,
                             No More Hunger</h1>
