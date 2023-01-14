@@ -22,27 +22,33 @@ const Events = () => {
     return (
       <div>
         <h2 className="text-3xl font-bold text-center mb-4">All Events</h2>
-        <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
           {events.map((event) => (
-            <div key={event._id} className="card w-96 bg-slate-100 shadow-xl">
-              <figure className="px-5 pt-5 w-96 h-1/2">
-                <img
-                  src={event.img}
-                  alt="Shoes"
-                  className="rounded-xl w-96 h-full"
-                />
-              </figure>
-              <div className="card-body items-center text-center">
-                <h2 className="card-title">{event.title}</h2>
-                <p>
-                  <strong>Author: </strong>
-                  {event.authorName}
-                </p>
-                <p>{event?.brief?.slice(0, 100) + "..."}</p>
-                <div className="card-actions">
-                  <Link to={`/events/${event._id}`}>
-                    <button className="btn btn-primary">View Details</button>
-                  </Link>
+            <div key={event._id}>
+              <div className="card card-compact w-full h-96 bg-base-100 shadow-xl rounded-none hover:scale-105 hover:transition-transform duration-300 ease-in-out">
+                <figure className="w-full h-3/4">
+                  <img src={event.img} alt="Shoes" className="w-full h-full" />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">{event.title}</h2>
+                  <div className="flex justify-between">
+                    <small>
+                      <strong>Organizer:</strong> <i>{event.authorName}</i>
+                    </small>
+                    <small className="text-gray-400">
+                      <strong>Date:</strong> <i>{event?.date}</i>
+                    </small>
+                  </div>
+                  <p>{event?.brief?.slice(0, 100) + "..."}</p>
+                  <div className="card-actions justify-between ">
+                    <div className="card-actions mx-auto">
+                      <Link to={`/events/${event._id}`}>
+                        <button className="btn btn-primary btn-sm btn-wide rounded-none bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-600 to-blue-600 ">
+                          View Details
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
