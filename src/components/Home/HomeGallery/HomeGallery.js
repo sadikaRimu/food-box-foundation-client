@@ -1,5 +1,7 @@
 import React from 'react';
-import img1 from '../../../assets/images/donation8.jpg';
+import img1 from '../../../assets/images/donationPic1.JPG';
+import img2 from '../../../assets/images/donationPic9.JPG';
+import img3 from '../../../assets/images/donationPic10.JPG';
 
 const HomeGallery = () => {
     return (
@@ -17,7 +19,7 @@ const HomeGallery = () => {
                 </div>
                 <div className="w-96 shadow-xl">
                     <div className="">
-                        <img className='rounded' src={img1} alt='' />
+                        <img className='rounded' src={img2} alt='' />
                         <div className='text-center'>
                             <h2 className="text-lg font-bold">Food for a children</h2>
                             <p className='text-muted'>19th November, 2022</p>
@@ -26,7 +28,7 @@ const HomeGallery = () => {
                 </div>
                 <div className="w-96 shadow-xl">
                     <div className="">
-                        <img className='rounded' src={img1} alt='' />
+                        <img className='rounded' src={img3} alt='' />
                         <div className='text-center'>
                             <h2 className="text-lg font-bold">Food for a children</h2>
                             <p className='text-muted'>19th November, 2022</p>

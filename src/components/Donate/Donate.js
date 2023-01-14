@@ -1,47 +1,192 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// IFFAT NUR SHAD 
+
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
 
 const Donate = () => {
-    const [amountFromButton, setAmountFromButton] = useState('');
-    const handleAmountValue = event => {
-        event.preventDefault();
-        setAmountFromButton(event.target.value);
-    }
-    const handlePayment = event => {
-        event.preventDefault();
-        const form = event.target;
-        console.log(form.amount.value);
-    }
+    const [amountFromButton, setAmountFromButton] = useState(0);
+
+    const stripe = useStripe();
+    const elements = useElements();
+    const [secret, setSecret] = useState('');
+    const [paymentError, setPaymentError] = useState("");
+    const [success, setSuccess] = useState("");
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState("");
+    const navigate = useNavigate();
+
+    const handleAmountValue = (amount) => {
+      setAmountFromButton(amount);
+    };
+       useEffect(() => {
+        if(amountFromButton === 0){
+          return;
+        }
+           fetch("http://localhost:5000/create-payment-intent", {
+             method: "POST",
+             headers: {
+               "Content-Type": "application/json",
+             },
+             body: JSON.stringify({
+               amountFromButton: parseInt(amountFromButton),
+             }),
+           })
+             .then((res) => res.json())
+             .then((data) => {
+               setSecret(data.clientSecret);
+              });
+            }, [amountFromButton]);
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      if (!stripe || !elements) {
+        return;
+      }
+
+      const card = elements.getElement(CardElement);
+      if (card === null) {
+        return;
+      }
+
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card,
+      });
+
+      if (error) {
+        console.log(error);
+        setPaymentError(error);
+      } else {
+        setPaymentError("");
+      }
+
+      setSuccess("");
+      setProcessing(true);
+      
+      console.log(secret);
+      const { paymentIntent, error: confirmError } =
+        await stripe.confirmCardPayment(secret, {
+          payment_method: {
+            card: card,
+            billing_details: {
+              name,
+              email,
+            },
+          },
+        });
+
+      if (confirmError) {
+        setPaymentError(confirmError.message);
+        return;
+      }
+
+      if (paymentIntent.status === "succeeded") {
+        setTransactionId(paymentIntent?.id);
+        const donorInfo = {
+          name,
+          email,
+          amount: amountFromButton,
+          transaction_id: paymentIntent.id,
+        };
+        fetch(`http://localhost:5000/donation`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            // authorization: `Bearer ${localStorage.getItem("tech-token")}`,
+          },
+          body: JSON.stringify(donorInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+              // setSuccess("Thanks For Your Contribution!");
+              setTransactionId(paymentIntent.id);
+              toast.success("Thanks for Donation!");
+              form.reset();
+              // navigate("/");
+            }
+          });
+      }
+      
+      setProcessing(false);
+    };
+    
     return (
-        <div className='text-center'>
-            <div className='my-8 text-center'>
-                <h2 className='text-2xl font-bold mb-4'>Donate Today</h2>
-                <p>Lorem ipsum dolor sit amet, usu cu esse possit referrentur, at eam falli deterruisset. No duo populo animal noluisse, enim</p>
-            </div>
-            {/* <div onClick={handleAmountValue} className='text-center mx-28 flex justify-center'>
-                <button value={100} className='btn m-2 h-20 w-20 border border-blue-500 rounded'>100 INR</button>
-                <button value={200} className='btn m-2 h-20 w-20 border border-blue-500 rounded'>200 INR</button>
-                <button value={500} className='btn m-2 h-20 w-20 border border-blue-500 rounded'>500 INR</button>
-                <button value={1000} className='btn m-2 h-20 w-20 border border-blue-500 rounded'>1000 INR</button>
-                <button value={2000} className='btn m-2 h-20 w-20 border border-blue-500 rounded'>2000 INR</button>
-            </div> */}
-            <form onSubmit={handlePayment} className='text-center mt-8'>
-                <input name='amount' type="text" placeholder="Enter Donate amount Here" className="input input-bordered w-full max-w-xs" /><br />
-                <button type='submit' className='btn btn-primary mt-4'>Donate</button>
-            </form>
-            <div>
-                <h2 className='text-3xl'>Payment for </h2>
-                <p className='text-xl'>Please pay <strong>$</strong>
-                    for you  at </p>
-                <div className='w-96 my-12'>
-                    {/* <Elements stripe={stripePromise}>
-                        <CheckoutForm
-                            booking={booking}
-                        />
-                    </Elements> */}
-                </div>
-            </div>
+      <div className="text-center">
+        <div className="my-8 text-center">
+          <h2 className="text-2xl font-bold mb-4">Donate Today</h2>
+          <p>
+            Lorem ipsum dolor sit amet, usu cu esse possit referrentur, at eam
+            falli deterruisset. No duo populo animal noluisse, enim
+          </p>
         </div>
+        {transactionId && (
+          <p>
+            Transaction ID: <span className='text-green-600 font-bold'>{transactionId}</span>
+          </p>
+        )}
+        <form onSubmit={handleSubmit} className="flex justify-center mt-8">
+          <div className="w-80">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              className="input input-bordered input-sm w-full max-w-xs mb-5"
+              required
+            />
+            <br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="input input-bordered input-sm w-full max-w-xs mb-5"
+              required
+            />
+            <br />
+            <CardElement
+              className="border-2 p-2 rounded-lg"
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
+                },
+              }}
+            />
+            <br />
+            <input
+              type="number"
+              name="amount"
+              placeholder="Donation Amount"
+              className="input input-bordered input-sm w-full max-w-xs mb-5"
+              required
+              onBlur={(e) => handleAmountValue(e.target.value)}
+            />
+            <br />
+            <button type="submit" className="btn btn-primary w-full btn-sm">
+              Donate
+              <span className="ml-1 text-yellow-400">
+                {amountFromButton === 0 ? "" : amountFromButton + " Rs"}
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
     );
 };
 
