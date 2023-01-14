@@ -6,7 +6,7 @@ import img2 from '../../assets/images/donation7.jpg';
 const Blog = () => {
     return (
         <div>
-            <h2 className='text-2xl font-bold text-center my-8'>All Published blog</h2>
+            <h2 className='text-2xl font-bold text-center my-8'>for testing purpose by iffat</h2>
             <div className='grid gap-4 grid-cols-1 lg:grid-cols-3 md:grid-cols-2'>
                 <div className="card w-96 bg-slate-100 shadow-xl">
                     <figure className="px-10 pt-10">
