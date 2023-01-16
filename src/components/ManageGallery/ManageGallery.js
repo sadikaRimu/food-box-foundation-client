@@ -9,6 +9,7 @@ import Spinner from "../Home/Home/shared/Spinner/Spinner";
 
 const ManageGallery = () => {
     const [galleryUpdate, setGalleryUpdate] = useState("");
+  const [update, setUpdate] = useState(false);
     const {
       data: images = [],
       refetch,
@@ -41,6 +42,7 @@ const ManageGallery = () => {
     };
 
     const handleUpdateContent = (id, event) => {
+      setUpdate(true)
       event.preventDefault();
       const title = event.target.title.value;
       const galleryInfo = {
@@ -71,6 +73,7 @@ const ManageGallery = () => {
             <GalleryUpdateModal
               galleryUpdate={galleryUpdate}
               handleUpdateContent={handleUpdateContent}
+              update={update}
             ></GalleryUpdateModal>
             <div className="card card-compact w-full h-96 bg-base-100 shadow-xl rounded-none hover:scale-105 hover:transition-transform duration-300 ease-in-out p-3">
               <figure className="w-full h-3/4">
