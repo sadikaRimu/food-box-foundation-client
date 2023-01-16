@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTrashAlt, FaRegEdit, FaRegEye } from "react-icons/fa";
 import { toast } from "react-toastify";
-import BlogModal from "../Dashboard/BlogModal";
-import BlogUpdateModal from "../Dashboard/BlogUpdateModal";
 import Spinner from "../Home/Home/shared/Spinner/Spinner";
 
 const ManageEvent = () => {
@@ -15,7 +13,7 @@ const ManageEvent = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["blog"],
+    queryKey: ["event"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/event");
       const data = await res.json();

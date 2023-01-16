@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTrashAlt, FaRegEdit, FaRegEye } from "react-icons/fa";
 import { toast } from 'react-toastify';
-import BlogModal from './BlogModal';
-import BlogUpdateModal from './BlogUpdateModal';
 import Spinner from '../Home/Home/shared/Spinner/Spinner';
 
 const ManageBlog = () => {

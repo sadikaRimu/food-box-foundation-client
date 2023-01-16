@@ -1,3 +1,4 @@
+import About from "../components/About/About";
 import AddEvent from "../components/AddEvent/AddEvent";
 import AddGallery from "../components/AddGallery/AddGallery";
 import Blog from "../components/Blog/Blog";
@@ -15,6 +16,7 @@ import Home from "../components/Home/Home/Home";
 import Login from "../components/Login/Login";
 import ManageEvent from "../components/ManageEvent/ManageEvent";
 import ManageGallery from "../components/ManageGallery/ManageGallery";
+import Members from "../components/Members/Members";
 import Payment from "../components/Payment/Payment";
 import Signup from "../components/Signup/Signup";
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: "/member",
+        element: <Members></Members>
       },
       {
         path: "/loginFoodBox",

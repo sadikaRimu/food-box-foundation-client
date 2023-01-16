@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddGallery = () => {
+  const [processing, setProcessing]  = useState(false);
     const {
       register,
       handleSubmit,
@@ -11,6 +12,7 @@ const AddGallery = () => {
     } = useForm();
     const navigate = useNavigate();
     const handleImageSubmit = (data) => {
+      setProcessing(true);
       const image = data.image[0];
       const formData = new FormData();
 
@@ -92,14 +94,24 @@ const AddGallery = () => {
               <p className="text-red-600">{errors.image?.message}</p>
             )}
           </div>
-
-          <button
-            className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-600 to-blue-600 w-full text-white mt-6"
-            value="Save"
-            type="submit"
-          >
-            Add New Image
-          </button>
+          {processing ? (
+            <button
+              className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-700 border-0 w-full text-white mt-6"
+              value="Save"
+              type="submit"
+              disabled
+            >
+              Processing...
+            </button>
+          ) : (
+            <button
+              className="btn btn-md bg-gradient-to-r from-cyan-700 to-blue-900 border-0 w-full text-white mt-6"
+              value="Save"
+              type="submit"
+            >
+              Add New Image
+            </button>
+          )}
         </form>
       </div>
     );

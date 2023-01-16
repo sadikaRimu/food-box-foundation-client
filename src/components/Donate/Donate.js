@@ -22,25 +22,23 @@ const Donate = () => {
     const handleAmountValue = (amount) => {
       setAmountFromButton(amount);
     };
-       useEffect(() => {
-        if(amountFromButton === 0){
-          return;
-        }
-           fetch("http://localhost:5000/create-payment-intent", {
-             method: "POST",
-             headers: {
-               "Content-Type": "application/json",
-             },
-             body: JSON.stringify({
-               amountFromButton: parseInt(amountFromButton),
-             }),
-           })
-             .then((res) => res.json())
-             .then((data) => {
-               setSecret(data.clientSecret);
-              });
-            }, [amountFromButton]);
-
+    useEffect(() => {
+      if (amountFromButton > 0) {
+        fetch("http://localhost:5000/create-payment-intent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            amountFromButton: parseInt(amountFromButton),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setSecret(data.clientSecret);
+          });
+      }
+    }, [amountFromButton]);
     const handleSubmit = async (event) => {
       event.preventDefault();
       const form = event.target;
@@ -109,7 +107,7 @@ const Donate = () => {
             if (data.acknowledged) {
               // setSuccess("Thanks For Your Contribution!");
               setTransactionId(paymentIntent.id);
-              toast.success("Thanks for Donation!");
+              toast.success("Thanks for Donation.");
               form.reset();
               // navigate("/");
             }
@@ -130,7 +128,8 @@ const Donate = () => {
         </div>
         {transactionId && (
           <p>
-            Transaction ID: <span className='text-green-600 font-bold'>{transactionId}</span>
+            Transaction ID:{" "}
+            <span className="text-green-600 font-bold">{transactionId}</span>
           </p>
         )}
         <form onSubmit={handleSubmit} className="flex justify-center mt-8">
@@ -175,15 +174,21 @@ const Donate = () => {
               placeholder="Donation Amount"
               className="input input-bordered input-sm w-full max-w-xs mb-5"
               required
-              onBlur={(e) => handleAmountValue(e.target.value)}
+              onBlur={(e) => setAmountFromButton(e.target.value)}
             />
             <br />
-            <button type="submit" className="btn btn-primary w-full btn-sm">
-              Donate
-              <span className="ml-1 text-yellow-400">
-                {amountFromButton === 0 ? "" : amountFromButton + " Rs"}
-              </span>
-            </button>
+            {amountFromButton === 0 ? (
+              <button type="submit" className="btn btn-primary w-full btn-sm">
+                Donate
+                <span className="ml-1 text-yellow-400">
+                  {amountFromButton === 0 ? "" : amountFromButton + " Rs"}
+                </span>
+              </button>
+            ) : (
+              <button type="submit" className="btn btn-primary w-full btn-sm">
+                Confirm
+              </button>
+            )}
           </div>
         </form>
       </div>

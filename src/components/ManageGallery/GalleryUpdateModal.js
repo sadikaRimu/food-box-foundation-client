@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GalleryUpdateModal = ({ galleryUpdate, handleUpdateContent }) => {
+const GalleryUpdateModal = ({ galleryUpdate, handleUpdateContent,update }) => {
     
   return (
     <div className="">
@@ -26,7 +26,7 @@ const GalleryUpdateModal = ({ galleryUpdate, handleUpdateContent }) => {
               />
             </div>{" "}
             <br />
-            <button className="btn btn-wide btn-sm mt-5" type="submit">
+            <button className="btn btn-wide btn-sm mt-5" type="submit" disabled={update}>
               Update
             </button>
           </form>

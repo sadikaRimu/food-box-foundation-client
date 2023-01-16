@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddEvent = () => {
+  const [processing, setProcessing] = useState(false);
   const {
     register,
     handleSubmit,
@@ -11,6 +12,7 @@ const AddEvent = () => {
   } = useForm();
   const navigate = useNavigate();
   const handleEventSubmit = (data) => {
+    setProcessing(true);
     const image = data.image[0];
     const formData = new FormData();
 
@@ -172,14 +174,24 @@ const AddEvent = () => {
               <p className="text-red-600">{errors.content?.message}</p>
             )}
           </div>
-
-          <button
-            className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-500 to-blue-500 w-full text-white mt-6"
-            value="Save"
-            type="submit"
-          >
-            Add New Event
-          </button>
+          {processing ? (
+            <button
+              className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-700 border-0  w-full text-white mt-6"
+              value="Save"
+              type="submit"
+              disabled
+            >
+              Processing...
+            </button>
+          ) : (
+            <button
+              className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-500 to-blue-500 w-full text-white mt-6"
+              value="Save"
+              type="submit"
+            >
+              Add New Event
+            </button>
+          )}
         </form>
       </div>
     </div>
