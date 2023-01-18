@@ -37,11 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About></About>
+        element: <About></About>,
       },
       {
         path: "/member",
-        element: <Members></Members>
+        element: <Members></Members>,
       },
       {
         path: "/loginFoodBox",
@@ -88,7 +88,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayoutRight></DashboardLayoutRight>,
+    element: (
+      <AdminRoute>
+        <DashboardLayoutRight></DashboardLayoutRight>
+      </AdminRoute>
+    ),
     children: [
       {
         path: "/dashboard/addWritter",
@@ -112,13 +116,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manageBlog/:id",
-        element: <BlogDetails></BlogDetails>,
+        element: (
+          <AdminRoute>
+            <BlogDetails></BlogDetails>
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/blog/${params.id}`),
       },
       {
         path: "/dashboard/manageBlog/update/:id",
-        element: <BlogUpdate></BlogUpdate>,
+        element: (
+          <AdminRoute>
+            <BlogUpdate></BlogUpdate>
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/blog/${params.id}`),
       },
@@ -141,13 +153,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manageEvent/:id",
-        element: <EventDetails></EventDetails>,
+        element: (
+          <AdminRoute>
+            <EventDetails></EventDetails>
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/event/${params.id}`),
       },
       {
         path: "/dashboard/manageEvent/update/:id",
-        element: <EventUpdate></EventUpdate>,
+        element: (
+          <AdminRoute>
+            <EventUpdate></EventUpdate>
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/event/${params.id}`),
       },

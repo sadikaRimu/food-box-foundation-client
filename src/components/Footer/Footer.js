@@ -6,25 +6,30 @@ import { FaRegEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 const Footer = () => {
     return (
       <div>
-        <div className="footer pt-10 bg-base-200 text-base-content mt-14">
+        <div className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 bg-base-200 text-base-content mt-14">
           <div>
-            <img src={icon} alt="" className="w-80 h-52" />
+            <img src={icon} alt="" className="w-full h-52 mx-auto" />
           </div>
-          <div className="mx-auto lg:mx-0 mt-0 p-0">
-            <span className="footer-title">Company</span>
+          <div className="mx-auto mt-0 p-0 text-center">
             <p>
-              <Link className="link link-hover">About us</Link>
+              <Link to="/blog" className="link link-hover">
+                Blogs
+              </Link>
             </p>
             <p>
-              <Link className="link link-hover">Contact</Link>
+              <Link to="/events" className="link link-hover">
+                Events
+              </Link>
             </p>
-
             <p>
-              <Link className="link link-hover">Board Members</Link>
+              <Link to="/about" className="link link-hover">
+                About us
+              </Link>
             </p>
-
             <p>
-              <Link className="link link-hover">Press kit</Link>
+              <Link to="/member" className="link link-hover">
+                Board Members
+              </Link>
             </p>
           </div>
           <div className="mx-auto lg:text-right">
