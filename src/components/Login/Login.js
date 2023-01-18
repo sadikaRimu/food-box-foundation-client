@@ -16,29 +16,26 @@ const Login = () => {
     //     navigate(from, { replace: true });
     // }
     const handleLogin = data => {
-        console.log(data);
         setLoginError('');
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 setloginUserEmail(data.email);
                 navigate(from, { replace: true });
             })
             .catch(err => {
-                console.error(err.message);
                 setLoginError(err.message);
             })
     }
     return (
       <div>
-        <div className="h-[800px] flex justify-center items-center">
-          <div className="w-96 p-7">
+        <div className="flex justify-center md:mt-20">
+          <div className="w-96 p-7 border-2 border-gray-300 shadow-xl py-10">
             <h2 className="text-xl text-center">Login</h2>
             <form onSubmit={handleSubmit(handleLogin)}>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text font-bold">Email</span>
                 </label>
                 <input
                   type="text"
@@ -51,7 +48,7 @@ const Login = () => {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text font-bold">Password</span>
                 </label>
                 <input
                   type="password"
@@ -67,31 +64,17 @@ const Login = () => {
                 {errors.password && (
                   <p className="text-red-600">{errors.password?.message}</p>
                 )}
-                <label className="label">
-                  <span className="label-text">Forget Password?</span>
-                </label>
               </div>
-              <Link to={`/dashboard`}>
-                <input
-                  className="btn btn-primary w-full text-white"
-                  value="Login"
-                  type="submit"
-                />
-              </Link>
+              <button
+                className="btn btn-primary w-full text-white mt-5"
+                type="submit"
+              >
+                Login
+              </button>
               <div>
                 {loginError && <p className="text-red-600">{loginError}</p>}
               </div>
             </form>
-            <p>
-              Not registered?{" "}
-              <Link className="text-secondary" to="/signup">
-                Create a new account
-              </Link>
-            </p>
-            <div className="divider">OR</div>
-            <button className="btn btn-outline w-full">
-              CONTINUE WITH GOOGLE
-            </button>
           </div>
         </div>
       </div>

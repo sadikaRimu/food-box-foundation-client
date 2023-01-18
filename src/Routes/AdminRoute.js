@@ -24,10 +24,17 @@ const AdminRoute = ({children}) => {
     if(isLoading){
       return <Spinner></Spinner>
     }
-    if (admin.email === "shah@jahan.com" && admin.password === "Abcd1#" && admin.role === "admin"){
+    if(user?.uid){
+      if (
+        admin.email === "shah@jahan.com" &&
+        admin.password === "Abcd1#" &&
+        admin.role === "admin"
+      ) {
         refetch();
         return children;
+      }
     }
+    
     return (
       <Navigate
         to="/loginFoodBox"

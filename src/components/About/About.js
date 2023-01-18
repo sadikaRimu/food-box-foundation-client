@@ -3,11 +3,11 @@ import image from '../../assets/icons/icon.png'
 
 const About = () => {
     return (
-      <div className="w-3/4 shadow-xl mx-auto p-16 text-justify">
+      <div className="w-11/12 shadow-xl mx-auto p-16 text-justify">
         <h1 className="text-center text-xl lg:text-3xl font-bold mb-3">
-          Welcome to Food Box Foundation Since 2021
+          Welcome to Food Box Foundation Since <span className='text-yellow-600 text-5xl'>2021</span>
         </h1>
-        <div className="grid grid-cols-1 lg:grid-cols-2 text-justify">
+        <div className="grid grid-cols-1 lg:grid-cols-2 text-justify items-center">
           <div>
             <img src={image} alt="" className="w-full h-full" />
           </div>
@@ -22,7 +22,7 @@ const About = () => {
             responded to the hunger crisis in India in covid crisis by providing
             food to people in need through a nationwide network of food banks.
           </article>
-        </div><br />
+        </div>
         <article>
           The concept of food banking was developed by{" "}
           <strong>Sudhir Singh</strong> in Prayagraj, UP in early 2021. Sudhir
