@@ -26,7 +26,7 @@ const Gallery = () => {
         <h2 className="text-3xl font-bold text-center mb-4">Gallery Photos</h2>
         <div className="grid gap-20 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
           {images.map((image) => (
-            <div key={image._id} className="w-96 shadow-xl ">
+            <div key={image._id} className="w-11/12 mx-auto lg:w-96 shadow-xl ">
               <div>
                 <img className="rounded w-full h-56" src={image.img} alt="" />
                 <div className="text-center">

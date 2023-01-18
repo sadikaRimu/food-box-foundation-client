@@ -31,14 +31,14 @@ const LeftNavbar = () => {
           <Link to="/gallery">Gallery</Link>
         </li>
         <li>
-          <Link to="/donate">
-            <button className="btn btn-primary sticky rounded-none bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-500 to-blue-500">
+          <a href="/donate">
+            <button className="btn btn-primary btn-md rounded-none bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-500 to-blue-500 text-white">
               Donate Now
             </button>
-          </Link>
+          </a>
         </li>
 
-        {user?.uid ? (
+        {user? (
           <>
             <li>
               <Link to="/dashboard">Dashboard</Link>

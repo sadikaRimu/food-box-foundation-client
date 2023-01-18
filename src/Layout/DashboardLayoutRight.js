@@ -5,9 +5,6 @@ import { AuthContext } from '../contexts/AuthProvider';
 
 const DashboardLayoutRight = () => {
     const { user } = useContext(AuthContext);
-    // const [isAdmin] = useAdmin(user?.email);
-    // const [isSeller] = useSeller(user?.email);
-    // const [isBuyer] = useBuyer(user?.email);
     return (
         <div>
             <LeftNavbar></LeftNavbar>
@@ -28,7 +25,6 @@ const DashboardLayoutRight = () => {
                         <li><Link to='/dashboard/addGallery'>Add Gallery</Link></li>
                         <li><Link to='/dashboard/manageGallery'>Manage Gallery</Link></li>
                     </ul>
-
                 </div>
             </div>
         </div>

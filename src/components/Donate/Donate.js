@@ -44,6 +44,7 @@ const Donate = () => {
       const form = event.target;
       const name = form.name.value;
       const email = form.email.value;
+      const phone = form.phone.value;
       if (!stripe || !elements) {
         return;
       }
@@ -76,6 +77,7 @@ const Donate = () => {
             billing_details: {
               name,
               email,
+              phone
             },
           },
         });
@@ -122,9 +124,11 @@ const Donate = () => {
         <div className="my-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Donate Today</h2>
           <p>
-            Lorem ipsum dolor sit amet, usu cu esse possit referrentur, at eam
-            falli deterruisset. No duo populo animal noluisse, enim
+            Food Box Foundation Has Served Over{" "}
+            <strong className="text-indigo-700">1 Lac+</strong> child across the
+            country
           </p>
+          <small className='text-gray-400'>Please Provide All The Information Below</small>
         </div>
         {transactionId && (
           <p>
@@ -137,19 +141,12 @@ const Donate = () => {
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Name*"
               className="input input-bordered input-sm w-full max-w-xs mb-5"
               required
             />
             <br />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="input input-bordered input-sm w-full max-w-xs mb-5"
-              required
-            />
-            <br />
+
             <CardElement
               className="border-2 p-2 rounded-lg"
               options={{
@@ -171,24 +168,39 @@ const Donate = () => {
             <input
               type="number"
               name="amount"
-              placeholder="Donation Amount"
+              placeholder="Donation Amount*"
               className="input input-bordered input-sm w-full max-w-xs mb-5"
               required
               onBlur={(e) => setAmountFromButton(e.target.value)}
             />
             <br />
-            {amountFromButton === 0 ? (
-              <button type="submit" className="btn btn-primary w-full btn-sm">
-                Donate
-                <span className="ml-1 text-yellow-400">
-                  {amountFromButton === 0 ? "" : amountFromButton + " Rs"}
-                </span>
-              </button>
-            ) : (
-              <button type="submit" className="btn btn-primary w-full btn-sm">
-                Confirm
-              </button>
-            )}
+            <input
+              type="email"
+              name="email"
+              placeholder="Email*"
+              className="input input-bordered input-sm w-full max-w-xs mb-5"
+              required
+            />
+            <br />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Contact Number*"
+              className="input input-bordered input-sm w-full max-w-xs mb-5"
+              required
+            />
+            <br />
+
+            <button
+              type="submit"
+              className="btn btn-primary w-full btn-sm"
+              disabled={transactionId}
+            >
+              Donate
+              <span className="ml-1 text-yellow-400">
+                {amountFromButton === 0 ? "" : amountFromButton + " Rs"}
+              </span>
+            </button>
           </div>
         </form>
       </div>
