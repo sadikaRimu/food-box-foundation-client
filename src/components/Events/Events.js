@@ -25,7 +25,7 @@ const Events = () => {
         <div className="grid gap-8 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
           {events.map((event) => (
             <div key={event._id}>
-              <div className="card card-compact w-full h-96 bg-base-100 shadow-xl rounded-none hover:scale-105 hover:transition-transform duration-300 ease-in-out">
+              <div className="card card-compact w-11/12 mx-auto lg:w-full h-96 bg-base-100 shadow-xl rounded-none hover:scale-105 hover:transition-transform duration-300 ease-in-out">
                 <figure className="w-full h-3/4">
                   <img src={event.img} alt="Shoes" className="w-full h-full" />
                 </figure>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Details = ({data}) => {
     const {
@@ -43,6 +44,11 @@ const Details = ({data}) => {
               <div>You can visit the following links to know more: {link}</div>
             )}
           </div>
+          <Link to={`/`}>
+            <button className="btn btn-primary btn-sm btn-wide rounded-none bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-600 to-blue-600 mt-5 mx-auto">
+              Go To Home
+            </button>
+          </Link>
         </div>
       </div>
     );

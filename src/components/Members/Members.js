@@ -12,7 +12,7 @@ const Members = () => {
               <div className="avatar">
                 <div className="w-24 rounded-full ring ring-gray-200 ring-offset-base-100 ring-offset-2">
                   <img
-                    src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png"
+                    src="https://i.ibb.co/jbypBRk/1673869977459.jpg"
                     alt=""
                     className="w-full h-full"
                   />
@@ -67,7 +67,7 @@ const Members = () => {
               <div className="avatar">
                 <div className="w-24 rounded-full ring ring-gray-200 ring-offset-base-100 ring-offset-2">
                   <img
-                    src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png"
+                    src="https://i.ibb.co/Ht1CHqw/1673869977472.jpg"
                     alt=""
                     className="w-full h-full"
                   />

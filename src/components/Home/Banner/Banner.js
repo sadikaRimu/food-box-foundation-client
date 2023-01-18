@@ -9,15 +9,16 @@ import './Banner.css';
 
 const Banner = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     fade: true,
     speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    prevArrow: null,
-    nextArrow: null,
+    arrows: false,
+    nextArrow: false,
+    prevArrow:false
   };
     return (
       <div>
@@ -45,15 +46,16 @@ const Banner = () => {
               />
             </div>
           </Slider>
-          <div className="px-24 py-44 text-center absolute top-0 banner-bg">
+          <div className="px-10 md:px-24 lg:px-24 py-[175px] md:py-[202px] lg:py-[182px] text-center absolute top-0 banner-bg">
             <h1 className="text-white text-5xl font-bold mb-8">
               No kid should be left hungry
             </h1>
-            <p className="text-slate-300 text-xl font-light hidden lg:block">
-              Food Box Foundation’s key campaign is aimed at providing daily
-              nutritious & hygienic meals to poor underprivileged kids across
-              the country. The aim of this campaign is “No kid should be left
-              hungry”.
+            <p className="text-slate-300 text-lg font-light hidden lg:block">
+              Food Box Foundation key camping is “No kid should be left Hungry”
+              We believe everyone has the right to food and our small effort can
+              help them to access food. We are working toward havingan End
+              Hunger food bank in each city where the unprivileged can access
+              free food.
             </p>
             <a href="/donate">
               <button className="btn btn-primary btn-md rounded-none mt-4 bg-gradient-to-r from-cyan-500 to-blue-700 border-0 hover:bg-gradient-to-l from-cyan-500 to-blue-500 text-white">
