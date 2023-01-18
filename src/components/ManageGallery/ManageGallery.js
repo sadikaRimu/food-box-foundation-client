@@ -30,6 +30,9 @@ const ManageGallery = () => {
       if(remove){
         fetch(`http://localhost:5000/gallery/${id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -52,6 +55,7 @@ const ManageGallery = () => {
         method: "PUT",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(galleryInfo),
       })
