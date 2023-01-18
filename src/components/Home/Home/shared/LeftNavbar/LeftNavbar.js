@@ -38,7 +38,7 @@ const LeftNavbar = () => {
           </a>
         </li>
 
-        {user? (
+        {user && 
           <>
             <li>
               <Link to="/dashboard">Dashboard</Link>
@@ -47,13 +47,7 @@ const LeftNavbar = () => {
               <button onClick={handleLogout}>Sign Out</button>
             </li>
           </>
-        ) : (
-          <>
-            <li>
-              <Link to="/loginFoodBox">Login</Link>
-            </li>
-          </>
-        )}
+        }
       </React.Fragment>
     );
     return (
