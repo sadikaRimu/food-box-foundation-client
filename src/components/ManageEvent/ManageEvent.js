@@ -28,6 +28,9 @@ const ManageEvent = () => {
     if(remove){
       fetch(`http://localhost:5000/event/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {
@@ -39,44 +42,7 @@ const ManageEvent = () => {
     }
     
   };
-  const handleUpdateContent = (id, event) => {
-    console.log(id);
-    event.preventDefault();
-    const title = event.target.title.value;
-    const authorName = event.target.authorName.value;
-    const link = event.target.link.value;
-    const brief = event.target.brief.value;
-    const details = event.details.value;
-    const info = event.target.info.value;
-    const conclusion = event.target.conclusion.value;
-    const date = event.target.date.value;
-    const eventInfo = {
-      title,
-      brief,
-      details,
-      info,
-      conclusion,
-      link,
-      authorName,
-      date,
-    };
-    console.log(eventInfo);
-    fetch(`http://localhost:5000/event/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(eventInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Event Updated");
-          event.target.reset();
-          refetch();
-        }
-      });
-  };
+  
   return (
     <div>
       <h2>Total events posted: {events.length}</h2>
