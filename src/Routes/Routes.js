@@ -88,11 +88,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <AdminRoute>
-        <DashboardLayoutRight></DashboardLayoutRight>
-      </AdminRoute>
-    ),
+    element: <DashboardLayoutRight></DashboardLayoutRight>,
     children: [
       {
         path: "/dashboard/addWritter",
@@ -100,92 +96,52 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addBlog",
-        element: (
-          <AdminRoute>
-            <AddNewBlog></AddNewBlog>
-          </AdminRoute>
-        ),
+        element: <AddNewBlog></AddNewBlog>,
       },
       {
         path: "/dashboard/manageBlog",
-        element: (
-          <AdminRoute>
-            <ManageBlog></ManageBlog>
-          </AdminRoute>
-        ),
+        element: <ManageBlog></ManageBlog>,
       },
       {
         path: "/dashboard/manageBlog/:id",
-        element: (
-          <AdminRoute>
-            <BlogDetails></BlogDetails>
-          </AdminRoute>
-        ),
+        element: <BlogDetails></BlogDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/blog/${params.id}`),
       },
       {
         path: "/dashboard/manageBlog/update/:id",
-        element: (
-          <AdminRoute>
-            <BlogUpdate></BlogUpdate>
-          </AdminRoute>
-        ),
+        element: <BlogUpdate></BlogUpdate>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/blog/${params.id}`),
       },
 
       {
         path: "/dashboard/addEvent",
-        element: (
-          <AdminRoute>
-            <AddEvent></AddEvent>
-          </AdminRoute>
-        ),
+        element: <AddEvent></AddEvent>,
       },
       {
         path: "/dashboard/manageEvent",
-        element: (
-          <AdminRoute>
-            <ManageEvent></ManageEvent>
-          </AdminRoute>
-        ),
+        element: <ManageEvent></ManageEvent>,
       },
       {
         path: "/dashboard/manageEvent/:id",
-        element: (
-          <AdminRoute>
-            <EventDetails></EventDetails>
-          </AdminRoute>
-        ),
+        element: <EventDetails></EventDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/event/${params.id}`),
       },
       {
         path: "/dashboard/manageEvent/update/:id",
-        element: (
-          <AdminRoute>
-            <EventUpdate></EventUpdate>
-          </AdminRoute>
-        ),
+        element: <EventUpdate></EventUpdate>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/event/${params.id}`),
       },
       {
         path: "/dashboard/addGallery",
-        element: (
-          <AdminRoute>
-            <AddGallery></AddGallery>
-          </AdminRoute>
-        ),
+        element: <AddGallery></AddGallery>,
       },
       {
         path: "/dashboard/manageGallery",
-        element: (
-          <AdminRoute>
-            <ManageGallery></ManageGallery>
-          </AdminRoute>
-        ),
+        element: <ManageGallery></ManageGallery>,
       },
     ],
   },

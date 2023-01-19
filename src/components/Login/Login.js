@@ -22,18 +22,6 @@ const Login = () => {
                 const user = result.user;
                 setloginUserEmail(data.email);
                 navigate(from, { replace: true });
-                const userEmail = { email: user?.email };
-                fetch("http://localhost:5000/jwt", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(userEmail),
-                })
-                  .then((res) => res.json())
-                  .then((data) => {
-                    localStorage.setItem("token", data.token);
-                  });
             })
             .catch(err => {
                 setLoginError(err.message);

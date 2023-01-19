@@ -24,9 +24,6 @@ const ManageBlog = () => {
       if(remove){
         fetch(`http://localhost:5000/blog/${id}`, {
           method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
         })
           .then((res) => res.json())
           .then((data) => {

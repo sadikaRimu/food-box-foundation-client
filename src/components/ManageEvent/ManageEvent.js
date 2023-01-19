@@ -28,9 +28,6 @@ const ManageEvent = () => {
     if(remove){
       fetch(`http://localhost:5000/event/${id}`, {
         method: "DELETE",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
       })
         .then((res) => res.json())
         .then((data) => {
