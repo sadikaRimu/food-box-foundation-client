@@ -25,7 +25,7 @@ const AddEvent = () => {
       .then((res) => res.json())
       .then((result) => {
         const blogInfo = {
-          img: result.data.display_url,
+          img: result.data?.display_url,
           title: data.title,
           authorName: data.authorName,
           brief: data.brief,

@@ -24,7 +24,7 @@ const AddNewBlog = () => {
           .then((res) => res.json())
           .then((result) => {
             const blogInfo = {
-              img: result.data.display_url,
+              img: result.data?.display_url,
               title: data.title,
               authorName: data.authorName,
               brief: data.brief,
@@ -189,7 +189,7 @@ const AddNewBlog = () => {
               value="Save"
               type="submit"
             >
-              Add New Image
+              Add New Blog
             </button>
           )}
         </form>

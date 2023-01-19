@@ -25,7 +25,7 @@ const AddGallery = () => {
         .then((res) => res.json())
         .then((result) => {
           const galleryInfo = {
-            img: result.data.display_url,
+            img: result.data?.display_url,
             title: data.title,
             date: data.date,
           };
