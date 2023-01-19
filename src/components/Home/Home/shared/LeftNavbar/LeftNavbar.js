@@ -43,9 +43,9 @@ const LeftNavbar = () => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li>
+            {/* <li>
               <button onClick={handleLogout}>Sign Out</button>
-            </li>
+            </li> */}
           </>
         }
       </React.Fragment>
