@@ -31,7 +31,7 @@ const BlogUpdate = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        // authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(blogInfo),
     })
